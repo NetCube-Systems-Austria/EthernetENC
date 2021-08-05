@@ -50,7 +50,12 @@ UIPEthernetClass::UIPEthernetClass()
 
 void UIPEthernetClass::init(uint8_t csPin)
 {
-  Enc28J60Network::setCsPin(csPin);
+  Enc28J60Network::setSpiPins(csPin);
+}
+
+void UIPEthernetClass::init(uint8_t mosiPin, uint8_t misoPin, uint8_t sckPin, uint8_t csPin)
+{
+  Enc28J60Network::setSpiPins(mosiPin, misoPin, sckPin, csPin);
 }
 
 #if UIP_UDP

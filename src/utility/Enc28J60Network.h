@@ -46,6 +46,9 @@ class Enc28J60Network : public MemoryPool
 
 private:
   static uint8_t csPin;
+  static uint8_t mosiPin;
+  static uint8_t misoPin;
+  static uint8_t sckPin;
   static bool spiInitialized;
 
   static uint16_t nextPacketPtr;
@@ -78,7 +81,9 @@ public:
   static void powerOff();
   static bool linkStatus();
 
-  static void setCsPin(uint8_t _csPin) {csPin = _csPin;}
+  static void setSpiPins(uint8_t _mosi, uint8_t _miso, uint8_t _sck, uint8_t _cs) {csPin = _cs; mosiPin = _mosi; misoPin = _miso; sckPin = _sck;}
+  static void setSpiPins(uint8_t _mosi, uint8_t _miso, uint8_t _sck) {mosiPin = _mosi; misoPin = _miso; sckPin = _sck;}
+  static void setSpiPins(uint8_t _cs) {csPin = _cs;}
   static void initSPI();
   static bool init(uint8_t* macaddr);
   static memhandle receivePacket();
